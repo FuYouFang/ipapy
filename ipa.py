@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 
 import optparse
@@ -51,15 +52,15 @@ keychainPassword=""
 
 #显示已有的参数
 def showParameter():
-    print "targetName                 :%s"%targetName
-    print "gitPath                    :%s"%gitPath
-    print "certificateName            :%s"%certificateName
-    print "firToken                   :%s"%firToken
-    print "emailFromUser              :%s"%emailFromUser
-    print "emailToUser                :%s"%emailToUser
-    print "emailPassword              :%s"%emailPassword
-    print "emailHost                  :%s"%emailHost
-    print "keychainPassword(Optional) :%s"%keychainPassword
+    print("targetName                 :%s" % targetName)
+    print("gitPath                    :%s" % gitPath)
+    print("certificateName            :%s" % certificateName)
+    print("firToken                   :%s" % firToken)
+    print("emailFromUser              :%s" % emailFromUser)
+    print("emailToUser                :%s" % emailToUser)
+    print("emailPassword              :%s" % emailPassword)
+    print("emailHost                  :%s" % emailHost)
+    print("keychainPassword(Optional) :%s" % keychainPassword)
     
 #设置参数
 def setParameter():
