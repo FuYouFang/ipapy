@@ -27,8 +27,9 @@ class IpaConfig(object):
     exportArchivePath = None
 
 
-
+    # 证书
     identity = None
+    #
     profile = None
 
     certificateName = None

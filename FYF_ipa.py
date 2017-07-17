@@ -13,6 +13,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
 from datetime import date, time, datetime, timedelta
+from os import listdir
+from os.path import isfile, join
+
 import FYF_ipa_config
 
 
@@ -136,7 +139,7 @@ class ipaTool(object):
         self.config.identity = 'iPhone Distribution: jianwei liu (F658SC654U)'
         # PROVISIONING_PROFILE = "b2ec3855-d750-4e9c-a89a-3c8ced56c06d";
         # PROVISIONING_PROFILE_SPECIFIER = shangYuDistribution;
-        self.config.profile = 'b2ec3855-d750-4e9c-a89a-3c8ced56c06d'
+        self.config.profile = 'XC iOS Ad Hoc:com.xingyunld.shangyu'
         self.checkWorkSpace()
 
     def beginWork(self):
@@ -205,6 +208,28 @@ class ipaTool(object):
             os.system('cd %s;xcodebuild -target %s clean' % (self.config.projectPath, self.config.targetName))
         return
 
+    # Find an identity (certificate + private key)
+    # 展示证书和秘钥
+    # python调用Shell脚本或者是调用系统命令，
+    # 有两种方法：os.system(cmd) 或os.popen(cmd),
+    # 前者返回值是脚本的退出状态码，后者的返回值是脚本执行过程中的输出内容。实际使用时视需求情况而选择。
+    def showCodesigningIdentity(self):
+        # os.system('security find-identity -p codesigning -v')
+        result = os.pipe('security find-identity -p codesigning -v')
+        test = result.read()
+        print(test)
+
+    def showTotalPorfile(self):
+        profilePath = '/Users/xuekai/Documents/FYF/test/'
+        profileFiles = [f for f in listdir(profilePath) if isfile(join(profilePath, f))]
+        for profileFileName in profileFiles:
+            filePath = os.path.join(profilePath, profileFileName)
+            print(os.system(r'/usr/libexec/PlistBuddy -c "Print :Entitlements:application-identifier" /dev/stdin <<< $(/usr/bin/security cms -D -i %s)' % filePath))
+            # print(os.system(r'/usr/libexec/PlistBuddy -c "Print :" /dev/stdin <<< $(/usr/bin/security cms -D -i %s)' % filePath))
+            # print(filePath)
+
+    def showPorgectProfile(self, bun):
+
 
 #主函数
 def main():
@@ -216,5 +241,8 @@ def main():
     tool.beginWork()
 
 
-
-main()
+if __name__ == '__main__':
+    # main()
+    tool = ipaTool()
+    # tool.showCodesigningIdentity()
+    tool.showTotalPorfile()
