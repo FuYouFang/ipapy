@@ -15,9 +15,11 @@ from email.header import Header
 from datetime import date, time, datetime, timedelta
 from os import listdir
 from os.path import isfile, join
-
 import FYF_ipa_config
+from profileTool import ProfileTool
+import re
 
+# import profileTool
 
 # 配置文件夹
 #commandPath = '/Users/' + getpass.getuser() + '/.ipa_build_py'
@@ -70,6 +72,8 @@ def gitShowTags():
 #       3.根据配置进行打包
 
 class ipaTool(object):
+    configPath = os.path.expanduser('~/Documents/.fyfIpaTool')
+
     parser = optparse.OptionParser()
     options = None
     arguments = None
@@ -92,12 +96,11 @@ class ipaTool(object):
 
     # 根据配置打包
     def packageWithConfig(self):
+        print('-------------- packageWithConfig ----------------')
         self.cleanProgect()
         self.archiveProgect()
         self.exportArchive()
-
         #os.system('cd %s;xcodebuild -target %s clean' % (self.config.projectPath, self.config.targetName))
-
         return
 
     # 是否要根据配置打包
@@ -112,35 +115,26 @@ class ipaTool(object):
     def showTagsInParser(self):
         print('展示tags')
 
-    def checkConfig(self):
-        return False
-
     # 判断是否是workspace
     def checkWorkSpace(self):
-        if os.path.exists("%s/%s.xcworkspace" % (self.config.projectPath, self.config.targetName)):
-            return True
+        return True
+        # if os.path.exists("%s/%s.xcworkspace" % (self.config.projectPath, self.config.targetName)):
+        #     return True
+        # else:
+        #     return False
+
+    # clean工程
+    def cleanProgect(self):
+        if self.checkWorkSpace():
+            # xcodebuild clean -configuration "Release" -alltargets
+            # os.system(
+            #     'cd %s;xcodebuild -workspace %s.xcworkspace -scheme %s clean' % (self.config.projectPath, self.config.targetName, self.config.targetName))
+            print('cd %s;xcodebuild -workspace %s.xcworkspace -scheme %s clean' % (
+                self.config.projectPath, self.config.targetName, self.config.targetName))
         else:
-            return False
+            os.system('cd %s;xcodebuild -target %s clean' % (self.config.projectPath, self.config.targetName))
+        return
 
-
-    def compliteConfig(self):
-        #taget = input('taget:')
-        if self.config == None:
-            self.config = FYF_ipa_config.IpaConfig()
-
-        # 配置参数
-        self.config.projectPath = '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T'
-        self.config.targetName = 'HappyFishing_iPhone'
-        self.config.archivePath = '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_archivePath/HappyFishing_iPhone.xcarchive'
-        self.config.exportArchivePath = '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_exportArchivePath'
-        self.config.exportOptionsPlistFilePath = '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_exportArchivePath/adhoc.plist'
-        self.config.configuration = 'Release'
-        # CODE_SIGN_IDENTITY = "iPhone Distribution: jianwei liu (F658SC654U)";
-        self.config.identity = 'iPhone Distribution: jianwei liu (F658SC654U)'
-        # PROVISIONING_PROFILE = "b2ec3855-d750-4e9c-a89a-3c8ced56c06d";
-        # PROVISIONING_PROFILE_SPECIFIER = shangYuDistribution;
-        self.config.profile = 'XC iOS Ad Hoc:com.xingyunld.shangyu'
-        self.checkWorkSpace()
 
     def beginWork(self):
         if self.isShowTagsInParser():
@@ -152,51 +146,239 @@ class ipaTool(object):
             self.packageWithConfig()
 
 
-    # clean工程
-    def cleanProgect(self):
-        if self.checkWorkSpace():
-            # xcodebuild clean -configuration "Release" -alltargets
-            # os.system(
-            #     'cd %s;xcodebuild -workspace %s.xcworkspace -scheme %s clean' % (self.config.projectPath, self.config.targetName, self.config.targetName))
-            print('cd %s;xcodebuild -workspace %s.xcworkspace -scheme %s clean' % (self.config.projectPath, self.config.targetName, self.config.targetName))
-        else:
-            os.system('cd %s;xcodebuild -target %s clean' % (self.config.projectPath, self.config.targetName))
-        return
+    # -----------------------------------------
+    #    开始配置相关参数
+    # -----------------------------------------
 
+    # 检查配置的参数是否符合要求
+    def checkConfig(self):
+        return False
+
+    # 配置参数
+    def compliteConfig(self):
+        #taget = input('taget:')
+        if self.config == None:
+            self.config = FYF_ipa_config.IpaConfig()
+
+        #
+        self.setConfigProjectPath()
+        self.setConfigTargetName()
+        self.setConfigArchivePath()
+        self.setConfigExportArchivePath()
+        self.setConfigIdentity()
+        self.setConfigPorfile()
+        self.setConfigConfiguration()
+        self.setConfigCompileBitcode()
+        self.setConfigExportMethod()
+        self.setConfigExportOptionsPlistFilePath()
+        # 配置参数
+        self.checkWorkSpace()
+
+    def setConfigExportArchivePath(self):
+        path = input('请输入导出地址：')
+        # 示例
+        # '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_exportArchivePath'
+        self.config.exportArchivePath = path
+
+    def setConfigProjectPath(self):
+        path = input('请输入项目地址：')
+        # 示例
+        # '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T'
+        self.config.projectPath = path
+
+    def setConfigTargetName(self):
+        targetName = input('请输入 targetName：')
+        # 示例
+        # 'HappyFishing_iPhone'
+        self.config.targetName = targetName
+
+    def setConfigArchivePath(self):
+        archivePath = input('请输入 archivePath:')
+        # 示例
+        # '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_archivePath/HappyFishing_iPhone.xcarchive'
+        self.config.archivePath = os.path.join(archivePath.strip(' '), ('%s.xcarchive' % self.config.targetName))
+
+    # Find an identity (certificate + private key)
+    # 展示证书和秘钥
+    # python调用Shell脚本或者是调用系统命令，
+    # 有两种方法：os.system(cmd) 或os.popen(cmd),
+    # 前者返回值是脚本的退出状态码，后者的返回值是脚本执行过程中的输出内容。实际使用时视需求情况而选择。
+    def setConfigIdentity(self):
+        # os.system('security find-identity -p codesigning -v')
+        identitys = []
+        result = os.popen('security find-identity -p codesigning -v')
+        print('----------------- 所有的 证书 -----------------')
+        for line in result:
+            # 示例：
+            # '1) FD819672C289A675C5A0EA0B92BABDBEDC95396B "iPhone Developer: Keli Hu (82YGMCAFJC)"'
+            r = re.search(r'"(.*)"', line)
+            if r :
+                print(line)
+                identitys.append(r.group(1))
+
+        index = -1
+        while True:
+            index = input('请选择 证书 的序号：')
+            index = int(index)
+            if (index >= 0 and index < len(identitys)):
+                break
+
+        identity = identitys[index]
+        print('选择 证书 为：%s' % (identity))
+
+        # 示例
+        # CODE_SIGN_IDENTITY = "iPhone Distribution: jianwei liu (F658SC654U)";
+        # self.config.identity = 'iPhone Distribution: jianwei liu (F658SC654U)'
+        self.config.identity = identity
+
+    # 展示所有 profile
+    def setConfigPorfile(self):
+        profileTool = ProfileTool(self.configPath)
+        profiles = profileTool.getTotalProfiles()
+
+        print(type(profiles))
+        print('----------------- 所有的 profile -----------------')
+        for index, profile in enumerate(profiles):
+            print('%s.%s - %s - %s' % (index, profile.name, profile.applicationIdentifier, profile.UUID))
+
+        index = -1
+        while True:
+            index = input('请选择 profile 的序号：')
+            index = int(index)
+            if (index >= 0 and index < len(profiles)):
+                break
+
+        profile = profiles[index]
+        print('选择 profile 为：%s - %s' % (profile.name, profile.UUID))
+
+        # 示例：
+        # PROVISIONING_PROFILE = "b2ec3855-d750-4e9c-a89a-3c8ced56c06d";
+        # PROVISIONING_PROFILE_SPECIFIER = shangYuDistribution;
+        # self.config.profile = 'XC iOS Ad Hoc:com.xingyunld.shangyu'
+        self.config.profile = profile.UUID
+
+    def setConfigConfiguration(self):
+        print('----------------- 模式 -----------------')
+        print('0. Debug')
+        print('1. Release')
+
+        index = -1
+        while True:
+            index = input('请选择 模式 的序号：')
+            index = int(index)
+            if (index >= 0 and index < 2):
+                break
+        if index == 1:
+            self.config.configuration = 'Release'
+        else:
+            self.config.configuration = 'Debug'
+
+    def setConfigCompileBitcode(self):
+        print('----------------- Bitcode -----------------')
+        print('0. No')
+        print('1. Yes')
+        index = -1
+        while True:
+            index = input('请选择 Bitcode 的序号：')
+            index = int(index)
+            if (index >= 0 and index < 2):
+                break
+        if index == 1:
+            self.config.compileBitcode = True
+        else:
+            self.config.compileBitcode = False
+
+    def setConfigExportMethod(self):
+        print('----------------- ExportMethod -----------------')
+        print('0. app-store')
+        print('1. ad-hoc')
+        print('2. enterprise')
+        print('3. development')
+        index = -1
+        while True:
+            index = input('请选择 Bitcode 的序号：')
+            index = int(index)
+            if (index >= 0 and index < 4):
+                break
+
+        if index == 0:
+            self.config.exportMethod = 'app-store'
+        elif index == 1:
+           self.config.exportMethod = 'ad-hoc'
+        elif index == 2:
+            self.config.exportMethod = 'enterprise'
+        elif index == 3:
+            self.config.exportMethod = 'development'
+
+    def setConfigExportOptionsPlistFilePath(self):
+        optionsPlistFilePath = os.path.join(self.configPath, 'ExportOptions.plist')
+        print('optionsPlistFilePath:%s' % optionsPlistFilePath)
+
+        # with open(optionsPlistFilePath, 'w') as f:
+        #     f.write(r'<?xml version="1.0" encoding="UTF-8"?>\n')
+        #     f.write(r'<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n')
+        #     f.write(r'<plist version="1.0">\n')
+        #     f.write(r'<dict>\n')
+        #     f.write(r'<key>compileBitcode</key>\n')
+        #     if self.config.compileBitcode:
+        #         f.write(r'<ture/>\n')
+        #     else:
+        #         f.write(r'<false/>\n')
+        #     f.write(r'<key>method</key>\n')
+        #     f.write(r'<string>%s</string>\n' % self.config.exportMethod)
+        #     f.write(r'</dict>\n')
+        #     f.write(r'</plist>\n')
+        lines = []
+        lines.append(r'<?xml version="1.0" encoding="UTF-8"?>')
+        lines.append(r'<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">')
+        lines.append(r'<plist version="1.0">')
+        lines.append(r'<dict>')
+        lines.append(r'<key>compileBitcode</key>')
+        if self.config.compileBitcode:
+            lines.append(r'<ture/>')
+        else:
+            lines.append(r'<false/>')
+        lines.append(r'<key>method</key>')
+        lines.append(r'<string>%s</string>' % self.config.exportMethod)
+        lines.append(r'</dict>')
+        lines.append(r'</plist>')
+
+        with open(optionsPlistFilePath, 'w') as f:
+            f.writelines(lines)
+
+        # 示例
+        # '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_exportArchivePath/adhoc.plist'
+        self.config.exportOptionsPlistFilePath = optionsPlistFilePath
+
+
+    # -----------------------------------------
+    #
+    # -----------------------------------------
     def archiveProgect(self):
+        print('------------------- archiveProgect ----------------------')
         if self.checkWorkSpace():
-            # os.system(
-            #     'cd %s;xcodebuild -workspace %s.xcworkspace -scheme %s -archivePath %s archive' % (self.config.projectPath, self.config.targetName, self.config.targetName, self.config.archivePath))
             print('cd %s;xcodebuild archive -workspace %s.xcworkspace -scheme %s -configuration %s -archivePath %s' % (
                 self.config.projectPath,
                 self.config.targetName,
                 self.config.targetName,
                 self.config.configuration,
                 self.config.archivePath))
+
+            os.system(
+                'cd %s;xcodebuild -workspace %s.xcworkspace -scheme %s -archivePath %s archive' % (self.config.projectPath, self.config.targetName, self.config.targetName, self.config.archivePath))
+
         else:
             os.system('cd %s;xcodebuild -target %s clean' % (self.config.projectPath, self.config.targetName))
         return
 
+    # -----------------------------------------
+    #
+    # -----------------------------------------
     # xcodebuild -exportArchive -archivePath /Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_archivePath/HappyFishing_iPhone.xcarchive -exportPath /Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_exportArchivePath -exportOptionsPlist /Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_exportArchivePath/adhoc.plist CODE_SIGN_IDENTITY="iPhone Distribution: jianwei liu (F658SC654U)" PROVISIONING_PROFILE="b2ec3855-d750-4e9c-a89a-3c8ced56c06d"
     def exportArchive(self):
+        print('------------------- exportArchive ----------------------')
         if self.checkWorkSpace():
-            # os.system(
-            #     # 'cd %s;/'
-            #     'xcodebuild -exportArchive /'
-            #     '-archivePath %s  /'
-            #     '-exportPath %s  /'
-            #     '-exportOptionsPlist %s /'
-            #     'CODE_SIGN_IDENTITY=%s /'
-            #     'PROVISIONING_PROFILE=%s' % (
-            #         # self.config.projectPath,
-            #         self.config.archivePath,
-            #         self.config.exportArchivePath,
-            #         self.config.exportOptionsPlistFilePath,
-            #         self.config.identity,
-            #         self.config.profile
-            #     ))
-
-            print('cd %s; xcodebuild -exportArchive -archivePath %s  -exportPath %s -exportOptionsPlist %s CODE_SIGN_IDENTITY=%s PROVISIONING_PROFILE=%s' % (
+            print('cd %s; xcodebuild -exportArchive -archivePath %s  -exportPath %s -exportOptionsPlist %s CODE_SIGN_IDENTITY="%s" PROVISIONING_PROFILE="%s"' % (
                     self.config.projectPath,
                     self.config.archivePath,
                     self.config.exportArchivePath,
@@ -204,31 +386,19 @@ class ipaTool(object):
                     self.config.identity,
                     self.config.profile
                 ))
+            os.system('cd %s; xcodebuild -exportArchive -archivePath %s  -exportPath %s -exportOptionsPlist %s CODE_SIGN_IDENTITY="%s" PROVISIONING_PROFILE="%s"' % (
+                    self.config.projectPath,
+                    self.config.archivePath,
+                    self.config.exportArchivePath,
+                    self.config.exportOptionsPlistFilePath,
+                    self.config.identity,
+                    self.config.profile
+                ))
+
         else:
             os.system('cd %s;xcodebuild -target %s clean' % (self.config.projectPath, self.config.targetName))
         return
 
-    # Find an identity (certificate + private key)
-    # 展示证书和秘钥
-    # python调用Shell脚本或者是调用系统命令，
-    # 有两种方法：os.system(cmd) 或os.popen(cmd),
-    # 前者返回值是脚本的退出状态码，后者的返回值是脚本执行过程中的输出内容。实际使用时视需求情况而选择。
-    def showCodesigningIdentity(self):
-        # os.system('security find-identity -p codesigning -v')
-        result = os.pipe('security find-identity -p codesigning -v')
-        test = result.read()
-        print(test)
-
-    def showTotalPorfile(self):
-        profilePath = '/Users/xuekai/Documents/FYF/test/'
-        profileFiles = [f for f in listdir(profilePath) if isfile(join(profilePath, f))]
-        for profileFileName in profileFiles:
-            filePath = os.path.join(profilePath, profileFileName)
-            print(os.system(r'/usr/libexec/PlistBuddy -c "Print :Entitlements:application-identifier" /dev/stdin <<< $(/usr/bin/security cms -D -i %s)' % filePath))
-            # print(os.system(r'/usr/libexec/PlistBuddy -c "Print :" /dev/stdin <<< $(/usr/bin/security cms -D -i %s)' % filePath))
-            # print(filePath)
-
-    def showPorgectProfile(self, bun):
 
 
 #主函数
@@ -241,8 +411,43 @@ def main():
     tool.beginWork()
 
 
+# 正则表达式
 if __name__ == '__main__':
-    # main()
-    tool = ipaTool()
-    # tool.showCodesigningIdentity()
-    tool.showTotalPorfile()
+    main()
+
+    # os.system(
+    #     'cd %s; xcodebuild -exportArchive -archivePath %s -exportPath %s -exportOptionsPlist %s CODE_SIGN_IDENTITY="%s" PROVISIONING_PROFILE="%s"' % (
+    #         '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T',
+    #         '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_archivePath/HappyFishing_iPhone.xcarchive',
+    #         '/Users/xuekai/Documents/work/com/HappyFishing_iPhone_T_exportArchivePath',
+    #         '/Users/xuekai/Documents/.fyfIpaTool/ExportOptions.plist',
+    #         'iPhone Developer: jianwei liu (5N4G2447Z5)',
+    #         'f79e6cc2-0076-43f0-a0b2-63545c9d0953'
+    #     ))
+
+    # tool = ipaTool()
+    # tool.setConfigIdentity()
+    #tool.setConfigPorfile()
+    # test = '1) FD819672C289A675C5A0EA0B92BABDBEDC95396B "iPhone Developer: Keli Hu (82YGMCAFJC)"'
+    # test = '"d"s'
+    # result = re.search(r'"(.*)"', test)
+    # print(result.group(0))
+
+    # lines = []
+    # lines.append(r'<?xml version="1.0" encoding="UTF-8"?>')
+    # lines.append(
+    #     r'<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">')
+    # lines.append(r'<plist version="1.0">')
+    # lines.append(r'<dict>')
+    # lines.append(r'<key>compileBitcode</key>')
+    #
+    # lines.append(r'<false/>')
+    # lines.append(r'<key>method</key>')
+    # lines.append(r'<string>ad-Hoc</string>')
+    # lines.append(r'</dict>')
+    # lines.append(r'</plist>')
+    #
+    # with open('/Users/xuekai/Documents/.fyfIpaTool/ExportOptions.plist', 'w') as f:
+    #     f.writelines(lines)
+
+

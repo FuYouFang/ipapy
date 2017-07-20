@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7cead01-e896-434c-84f3-b2e2887178fc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/profileTool.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projectTool.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FYF_ipa.py" afterPath="$PROJECT_DIR$/FYF_ipa.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FYF_ipa_config.py" afterPath="$PROJECT_DIR$/FYF_ipa_config.py" />
@@ -31,20 +33,25 @@
       <file leaf-file-name="FYF_ipa.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FYF_ipa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="141" column="66" lean-forward="false" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="66" />
+            <state relative-caret-position="415">
+              <caret line="416" column="0" lean-forward="true" selection-start-line="416" selection-start-column="0" selection-end-line="416" selection-end-column="0" />
               <folding>
                 <element signature="e#49#64#0" expanded="true" />
+                <element signature="e#5085#5228#0" expanded="false" />
+                <element signature="e#5726#5772#0" expanded="false" />
+                <element signature="e#5959#6932#0" expanded="false" />
+                <element signature="e#6993#7901#0" expanded="false" />
+                <element signature="e#8411#8821#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FYF_ipa_config.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FYF_ipa_config.py">
+      <file leaf-file-name="profileTool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/profileTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="32" column="4" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+            <state relative-caret-position="-483">
+              <caret line="81" column="21" lean-forward="true" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
               </folding>
@@ -52,11 +59,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="os_Learn.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/os_Learn.py">
+      <file leaf-file-name="projectTool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/projectTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="22" lean-forward="true" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FYF_ipa_config.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FYF_ipa_config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="15" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="15" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
               </folding>
@@ -68,36 +85,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>createFileFinder</find>
-      <find>gitClone</find>
-      <find>gitPull</find>
-      <find>setGitVersion</find>
-      <find>allowFinder</find>
-      <find>allowKeychain</find>
-      <find>xcodebuild</find>
-      <find>cerateIPA</find>
-      <find>buildApp</find>
-      <find>compliteConfig</find>
-      <find>checkWorkSpace</find>
-      <find>exportPathexportPath</find>
-      <find>exportPath</find>
-      <find>clearPbxproj</find>
-      <find>CODE_SIGN_IDENTITY</find>
-      <find>isPackageWithConfigInParser</find>
-      <find>isWorkSpace</find>
-      <find>cleanProgect</find>
       <find>cd %s;xcodebuild -targe</find>
-      <find>packageWithConfig</find>
       <find>archivePath</find>
       <find>exportArchivePath</find>
       <find>exportOptionsPlistFilePath</find>
       <find>profile</find>
-      <find>archiveProgect</find>
       <find>archive</find>
-      <find>PROVISIONING_PROFILE</find>
-      <find>configuration</find>
-      <find>createConfigFile</find>
       <find>onfig.profile</find>
+      <find>applicationIdentifierPrefix</find>
+      <find>creationDate</find>
+      <find>profileTool</find>
+      <find>showCodesigningIdentity</find>
+      <find>applicationIdentifier</find>
+      <find>showPorgectProfile</find>
+      <find>setConfigProjectPath</find>
+      <find>isPackageWithConfigInParser</find>
+      <find>PROVISIONING_PROFILE</find>
+      <find>checkConfig</find>
+      <find>ProfileTool</find>
+      <find>export</find>
+      <find>setConfigCompileBitcode</find>
+      <find>le</find>
+      <find>configuration</find>
+      <find>isShowTagsInParser</find>
+      <find>happyfishing</find>
+      <find>setConfigExportOptionsPlistFilePath</find>
+      <find>exportMethod</find>
+      <find>setConfigExportMethod</find>
+      <find>archiveProgect</find>
+      <find>packageWithConfig</find>
+      <find>createConfigFile</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -114,16 +131,17 @@
         <option value="$PROJECT_DIR$/Learn_os.py" />
         <option value="$PROJECT_DIR$/os_Learn.py" />
         <option value="$PROJECT_DIR$/ipa.py" />
+        <option value="$PROJECT_DIR$/projectTool.py" />
+        <option value="$PROJECT_DIR$/profileTool.py" />
         <option value="$PROJECT_DIR$/FYF_ipa_config.py" />
         <option value="$PROJECT_DIR$/FYF_ipa.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1980" />
-    <option name="y" value="88" />
+    <option name="x" value="1920" />
     <option name="width" value="1920" />
-    <option name="height" value="985" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -157,6 +175,9 @@
       </pane>
       <pane id="Scratches" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -356,14 +377,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1980" y="88" width="1920" height="985" extended-state="1" />
+    <frame x="1920" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12886049" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07838746" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06930693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -391,7 +412,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -412,6 +433,11 @@
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="22" selection-end-column="60" />
           <folding>
             <element signature="e#49#64#0" expanded="true" />
+            <element signature="e#5085#5228#0" expanded="false" />
+            <element signature="e#5726#5772#0" expanded="false" />
+            <element signature="e#5959#6932#0" expanded="false" />
+            <element signature="e#6993#7901#0" expanded="false" />
+            <element signature="e#8411#8821#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -431,7 +457,7 @@
         <state relative-caret-position="638">
           <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
           <folding>
-            <element signature="e#24#33#0" expanded="true" />
+            <element signature="e#24#33#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -452,6 +478,11 @@
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="22" selection-end-column="60" />
           <folding>
             <element signature="e#49#64#0" expanded="true" />
+            <element signature="e#5085#5228#0" expanded="false" />
+            <element signature="e#5726#5772#0" expanded="false" />
+            <element signature="e#5959#6932#0" expanded="false" />
+            <element signature="e#6993#7901#0" expanded="false" />
+            <element signature="e#8411#8821#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -471,7 +502,7 @@
         <state relative-caret-position="638">
           <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
           <folding>
-            <element signature="e#24#33#0" expanded="true" />
+            <element signature="e#24#33#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -492,6 +523,11 @@
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="22" selection-end-column="60" />
           <folding>
             <element signature="e#49#64#0" expanded="true" />
+            <element signature="e#5085#5228#0" expanded="false" />
+            <element signature="e#5726#5772#0" expanded="false" />
+            <element signature="e#5959#6932#0" expanded="false" />
+            <element signature="e#6993#7901#0" expanded="false" />
+            <element signature="e#8411#8821#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -501,7 +537,7 @@
         <state relative-caret-position="638">
           <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
           <folding>
-            <element signature="e#24#33#0" expanded="true" />
+            <element signature="e#24#33#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -532,6 +568,11 @@
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="e#49#64#0" expanded="true" />
+            <element signature="e#5085#5228#0" expanded="false" />
+            <element signature="e#5726#5772#0" expanded="false" />
+            <element signature="e#5959#6932#0" expanded="false" />
+            <element signature="e#6993#7901#0" expanded="false" />
+            <element signature="e#8411#8821#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -567,6 +608,11 @@
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="e#49#64#0" expanded="true" />
+            <element signature="e#5085#5228#0" expanded="false" />
+            <element signature="e#5726#5772#0" expanded="false" />
+            <element signature="e#5959#6932#0" expanded="false" />
+            <element signature="e#6993#7901#0" expanded="false" />
+            <element signature="e#8411#8821#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -643,16 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/os_Learn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ipa.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6576">
@@ -663,10 +699,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-1665691696/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="809" column="8" lean-forward="false" selection-start-line="809" selection-start-column="8" selection-end-line="809" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python3/3.6.0/Frameworks/Python.framework/Versions/3.6/lib/python3.6/re.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="178" column="4" lean-forward="false" selection-start-line="178" selection-start-column="4" selection-end-line="178" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons/re.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="252" column="13" lean-forward="false" selection-start-line="252" selection-start-column="8" selection-end-line="252" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/os_Learn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#33#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profileTool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="81" column="21" lean-forward="true" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/projectTool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="22" lean-forward="true" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FYF_ipa_config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="32" column="4" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+        <state relative-caret-position="285">
+          <caret line="19" column="15" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="15" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
           </folding>
@@ -675,10 +763,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FYF_ipa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="141" column="66" lean-forward="false" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="66" />
+        <state relative-caret-position="415">
+          <caret line="416" column="0" lean-forward="true" selection-start-line="416" selection-start-column="0" selection-end-line="416" selection-end-column="0" />
           <folding>
             <element signature="e#49#64#0" expanded="true" />
+            <element signature="e#5085#5228#0" expanded="false" />
+            <element signature="e#5726#5772#0" expanded="false" />
+            <element signature="e#5959#6932#0" expanded="false" />
+            <element signature="e#6993#7901#0" expanded="false" />
+            <element signature="e#8411#8821#0" expanded="false" />
           </folding>
         </state>
       </provider>

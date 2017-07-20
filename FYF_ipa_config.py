@@ -26,6 +26,8 @@ class IpaConfig(object):
     exportOptionsPlist = None
     exportArchivePath = None
 
+    compileBitcode = None
+    exportMethod = None
 
     # 证书
     identity = None
